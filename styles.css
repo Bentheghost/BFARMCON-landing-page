@@ -1,7 +1,6 @@
 /* ==========================================================================
-   BFARMCON LIMITED | FARMERS CONNECT (SOP v2.0)
-   Modern Design System & Responsive Styles
-   Aesthetics tailored to the BFARMCON Logo & Fluxel-inspired Architecture
+   BFARMCON LIMITED | Farmers Connect
+   Modern Agro-Allied Design System & Responsive Styles
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -35,7 +34,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   Dark Mode (Default - Sleek, Luxurious Obsidian-Forest Aesthetic)
+   2. Dark Mode Theme Variables (Default)
    -------------------------------------------------------------------------- */
 [data-theme="dark"] {
   --bg-page: #0a130c;
@@ -604,7 +603,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --------------------------------------------------------------------------
-   7. Hero Section (Split Screen Layout from Video)
+   7. Hero Section
    -------------------------------------------------------------------------- */
 .hero-section {
   position: relative;
@@ -733,7 +732,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.7;
 }
 
-/* Social Strip (matched to sample video) */
+/* Social Channels Strip */
 .hero-social-strip {
   display: flex;
   align-items: center;
@@ -899,7 +898,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --------------------------------------------------------------------------
-   8. Metrics Counter Section (4-column row from video)
+   8. Metrics Counter Section
    -------------------------------------------------------------------------- */
 .metrics-counter-section {
   padding: 3rem 0;
@@ -985,14 +984,20 @@ h1, h2, h3, h4, h5, h6 {
 .about-container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 4rem;
-  align-items: center;
+  gap: 3.5rem;
+  align-items: start;
 }
 
 @media (min-width: 992px) {
   .about-container {
-    grid-template-columns: 0.9fr 1.1fr;
+    grid-template-columns: 0.95fr 1.05fr;
   }
+}
+
+.about-image-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 .about-image-frame {
@@ -1045,11 +1050,248 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.3;
 }
 
+/* Managing Director Executive Portrait & Floating Pill */
+.md-portrait-frame {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.45);
+  border: 2px solid var(--border-color);
+  background: var(--brand-forest-dark);
+}
+
+.md-portrait-image {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform var(--transition-slow);
+}
+
+.md-portrait-frame:hover .md-portrait-image {
+  transform: scale(1.02);
+}
+
+.md-leadership-pill {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: rgba(6, 35, 18, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.md-leadership-pill .pill-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: rgba(34, 197, 94, 0.2);
+  color: var(--brand-green-bright);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+}
+
+.md-leadership-pill .pill-text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.md-leadership-pill .pill-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.md-leadership-pill .pill-role {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--brand-green-bright);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.md-leadership-pill .pill-sub {
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.1rem;
+}
+
+/* Executive Leadership Bio Card in About Column (Directly Under Picture) */
+.leadership-executive-card {
+  background: var(--bg-surface-card);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--brand-green-primary);
+  border-radius: var(--radius-md);
+  padding: 1.4rem 1.6rem;
+  margin: 0;
+  box-shadow: var(--card-shadow);
+  transition: transform var(--transition-normal), border-color var(--transition-normal);
+}
+
+.leadership-executive-card:hover {
+  border-color: var(--brand-green-primary);
+  transform: translateY(-2px);
+}
+
+.leadership-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.85rem;
+}
+
+.leadership-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--brand-green-primary);
+  background: var(--badge-bg);
+  padding: 0.28rem 0.65rem;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+}
+
+[data-theme="dark"] .leadership-badge {
+  color: var(--brand-green-bright);
+}
+
+.leadership-experience-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.leadership-experience-tag i {
+  color: var(--brand-green-primary);
+}
+
+.leadership-name {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.2rem;
+  letter-spacing: -0.01em;
+}
+
+.leadership-designation {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--brand-green-primary);
+  margin-bottom: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="dark"] .leadership-designation {
+  color: var(--brand-green-bright);
+}
+
+.leadership-bio {
+  font-size: 0.94rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+
+.leadership-bio strong {
+  color: var(--text-main);
+}
+
 .about-lead {
   font-size: 1.15rem;
   color: var(--text-main);
   margin-bottom: 1rem;
   line-height: 1.7;
+}
+
+/* Dedicated Mission Statement Highlight Card */
+.mission-statement-card {
+  background: linear-gradient(135deg, rgba(22, 163, 74, 0.12) 0%, rgba(6, 35, 18, 0.28) 100%);
+  border: 1.5px solid var(--brand-green-primary);
+  border-left: 6px solid var(--brand-green-primary);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.75rem;
+  margin: 1.5rem 0 1.75rem;
+  box-shadow: 0 8px 24px -4px rgba(22, 163, 74, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="light"] .mission-statement-card {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-color: var(--brand-green-primary);
+  border-left-color: var(--brand-green-primary);
+}
+
+.mission-card-header {
+  margin-bottom: 0.75rem;
+}
+
+.mission-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--brand-green-bright);
+  background: rgba(34, 197, 94, 0.18);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  text-transform: uppercase;
+}
+
+[data-theme="light"] .mission-badge {
+  color: #15803d;
+  background: rgba(22, 163, 74, 0.15);
+  border-color: rgba(22, 163, 74, 0.3);
+}
+
+.mission-statement-quote {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.35;
+  margin-bottom: 0.65rem;
+  letter-spacing: -0.01em;
+}
+
+.mission-statement-body {
+  font-size: 0.96rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 0;
 }
 
 .about-text {
@@ -1059,7 +1301,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.7;
 }
 
-/* Skills/Compliance Progress Bars (matched from video) */
+/* Operational Standards Compliance Progress Bars */
 .skills-progress-group {
   display: flex;
   flex-direction: column;
@@ -1121,218 +1363,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --------------------------------------------------------------------------
-   10. SOP Dual-Column Timeline Section (Education & Experience style from video)
-   -------------------------------------------------------------------------- */
-.timeline-sop-section {
-  padding: 6rem 0;
-  background: var(--bg-surface);
-}
-
-.sop-nav-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 2.5rem;
-  flex-wrap: wrap;
-}
-
-.sop-tab-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.75rem 1.4rem;
-  border-radius: 9999px;
-  background: var(--bg-surface-card);
-  border: 1px solid var(--border-color);
-  color: var(--text-muted);
-  font-size: 0.92rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.sop-tab-pill:hover {
-  border-color: var(--brand-green-primary);
-  color: var(--brand-green-primary);
-  transform: translateY(-2px);
-}
-
-.sop-tab-pill.active {
-  background: var(--brand-green-primary);
-  border-color: var(--brand-green-primary);
-  color: #ffffff;
-  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
-}
-
-.sop-panel {
-  display: none;
-}
-
-.sop-panel.active {
-  display: block;
-  animation: fadeIn 0.35s ease;
-}
-
-.sop-dual-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
-}
-
-@media (min-width: 992px) {
-  .sop-dual-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.sop-qc-strip {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-top: 1.5rem;
-  padding: 1.15rem;
-  background: var(--bg-surface);
-  border: 1px dashed var(--border-color);
-  border-radius: var(--radius-md);
-}
-
-.sop-qc-item {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  font-size: 0.85rem;
-  color: var(--text-main);
-}
-
-.sop-qc-item i {
-  color: var(--brand-green-primary);
-  font-size: 1.15rem;
-  flex-shrink: 0;
-}
-
-.sop-inspect-btn-wrap {
-  margin-top: 1.75rem;
-  text-align: right;
-}
-
-.sop-column {
-  background: var(--bg-surface-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-xl);
-  padding: 2.25rem;
-  box-shadow: var(--card-shadow);
-}
-
-.sop-col-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.sop-col-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-md);
-  background: var(--badge-bg);
-  color: var(--brand-green-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.35rem;
-}
-
-[data-theme="dark"] .sop-col-icon {
-  color: var(--brand-green-bright);
-}
-
-.sop-col-title {
-  font-size: 1.3rem;
-  color: var(--text-main);
-}
-
-.sop-col-meta {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--brand-green-primary);
-}
-
-.timeline-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.timeline-card {
-  position: relative;
-  background: var(--bg-surface-elevated);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 1.25rem;
-  transition: all var(--transition-normal);
-}
-
-.timeline-card:hover {
-  border-color: var(--brand-green-primary);
-  transform: translateX(4px);
-}
-
-.card-timeline-marker {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  background: var(--brand-forest-dark);
-  color: var(--brand-green-bright);
-  padding: 0.2rem 0.6rem;
-  border-radius: var(--radius-sm);
-  margin-bottom: 0.6rem;
-  border: 1px solid rgba(34, 197, 94, 0.3);
-}
-
-.card-step-title {
-  font-size: 1.05rem;
-  color: var(--text-main);
-  margin-bottom: 0.4rem;
-}
-
-.timeline-card-body p {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-  margin-bottom: 0.75rem;
-}
-
-.card-deliverable {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.82rem;
-  color: var(--text-main);
-  background: var(--bg-surface);
-  padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-subtle);
-}
-
-.card-deliverable i {
-  color: var(--brand-green-primary);
-}
-
-.timeline-card.highlight-card {
-  border-left: 3px solid var(--brand-gold);
-}
-
-.timeline-card.highlight-card .card-timeline-marker {
-  color: var(--brand-gold-light);
-  border-color: rgba(245, 158, 11, 0.4);
-}
-
-/* --------------------------------------------------------------------------
-   11. Services Grid (Hover highlight effect from video)
+   10. Services Section & Grid
    -------------------------------------------------------------------------- */
 .services-section {
   padding: 6rem 0;
@@ -1429,7 +1460,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: border-color var(--transition-normal);
 }
 
-.sop-tag {
+.service-tag {
   font-size: 0.78rem;
   font-weight: 700;
   color: var(--text-subtle);
@@ -1453,7 +1484,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--brand-green-bright);
 }
 
-/* Video Effect: Card lights up in bright signature green on hover! */
+/* Service Card Hover Highlight Effect */
 .service-card:hover {
   background: var(--brand-green-primary);
   border-color: var(--brand-green-primary);
@@ -1478,7 +1509,7 @@ h1, h2, h3, h4, h5, h6 {
   border-top-color: rgba(255, 255, 255, 0.2);
 }
 
-.service-card:hover .sop-tag {
+.service-card:hover .service-tag {
   color: rgba(255, 255, 255, 0.8);
 }
 
@@ -1593,7 +1624,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --------------------------------------------------------------------------
-   15. Contact Section & Interactive Directory (Matched to Video)
+   12. Contact Section & Interactive Directory
    -------------------------------------------------------------------------- */
 .contact-section {
   padding: 6rem 0;
@@ -1680,6 +1711,101 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+}
+
+/* Google Maps Verified Location Card */
+.headquarters-map-card {
+  background: var(--bg-surface-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.map-card-header {
+  padding: 1.25rem 1.5rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.map-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--brand-green-bright);
+  background: rgba(34, 197, 94, 0.12);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  width: fit-content;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+.map-pin-title {
+  font-size: 1.05rem;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.map-pin-title i {
+  color: var(--brand-green-primary);
+}
+
+.map-frame-wrapper {
+  position: relative;
+  width: 100%;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-surface-elevated);
+}
+
+.map-frame-wrapper iframe {
+  display: block;
+  width: 100%;
+}
+
+.map-card-footer {
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  background: var(--bg-surface-elevated);
+}
+
+.map-address-hint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.map-directions-btn {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--brand-green-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all var(--transition-fast);
+}
+
+[data-theme="dark"] .map-directions-btn {
+  color: var(--brand-green-bright);
+}
+
+.map-directions-btn:hover {
+  text-decoration: underline;
+  transform: translateX(2px);
 }
 
 /* Regional State Hubs Box */
@@ -1915,6 +2041,23 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.45rem;
 }
 
+.custom-commodity-group {
+  animation: slideDownFade 0.3s ease-out;
+  border-left: 3px solid var(--brand-green-primary);
+  padding-left: 0.85rem;
+}
+
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .form-group label {
   font-size: 0.86rem;
   font-weight: 600;
@@ -1957,6 +2100,114 @@ h1, h2, h3, h4, h5, h6 {
 .form-group textarea:focus {
   border-color: var(--brand-green-primary);
   box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
+}
+
+/* Channel Selector Group */
+.channel-selector-group {
+  margin-top: 0.5rem;
+}
+
+.channel-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.6rem;
+}
+
+.channel-label i {
+  color: var(--brand-green-primary);
+}
+
+.channel-toggle-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 576px) {
+  .channel-toggle-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.channel-btn {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.85rem 0.95rem;
+  background: var(--bg-input);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.channel-btn:hover {
+  border-color: var(--brand-green-primary);
+  background: var(--bg-surface-hover);
+}
+
+.channel-btn.active {
+  border-color: var(--brand-green-light);
+  background: rgba(34, 197, 94, 0.1);
+  box-shadow: 0 0 0 1px var(--brand-green-light);
+}
+
+.channel-radio {
+  display: none;
+}
+
+.channel-radio-custom {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--text-muted);
+  display: inline-block;
+  flex-shrink: 0;
+  margin-top: 3px;
+  position: relative;
+  transition: all var(--transition-fast);
+}
+
+.channel-btn.active .channel-radio-custom {
+  border-color: var(--brand-green-light);
+}
+
+.channel-btn.active .channel-radio-custom::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand-green-light);
+}
+
+.channel-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.channel-name {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.channel-sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.25;
 }
 
 .btn-submit-full {

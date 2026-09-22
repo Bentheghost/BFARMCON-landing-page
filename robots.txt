@@ -1,0 +1,8 @@
+# Robots.txt for BFARMCON LIMITED
+# Enables Googlebot, Bingbot, and all legitimate search engine web crawlers
+
+User-agent: *
+Allow: /
+
+# Sitemap Location for Google Search Console & Search Engine Discovery
+Sitemap: https://bfarmcon.com/sitemap.xml

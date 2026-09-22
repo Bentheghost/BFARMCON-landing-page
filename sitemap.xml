@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Main Landing Page -->
+  <url>
+    <loc>https://bfarmcon.com/</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    
+    <!-- Key Brand & Executive Assets for Google Image Search -->
+    <image:image>
+      <image:loc>https://bfarmcon.com/assets/logo.jpg</image:loc>
+      <image:title>BFARMCON LIMITED Official Logo</image:title>
+      <image:caption>BFARMCON LIMITED - Farmers Connect Logo</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bfarmcon.com/assets/md-photo.jpg</image:loc>
+      <image:title>Samuel Joshua Funom - Managing Director</image:title>
+      <image:caption>Samuel Joshua Funom, Managing Director of BFARMCON LIMITED</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bfarmcon.com/assets/hero.jpg</image:loc>
+      <image:title>Agro-Allied Commodity Sourcing and Aggregation</image:title>
+      <image:caption>BFARMCON Field Operations and Grains Sourcing in Nigeria</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bfarmcon.com/assets/cooperative.jpg</image:loc>
+      <image:title>Smallholder Farmer Cooperatives Empowerment</image:title>
+      <image:caption>Nigerian Farmer Cooperatives Partnering with BFARMCON LIMITED</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Inquire & Commodity Procurement Section -->
+  <url>
+    <loc>https://bfarmcon.com/#contact</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Services Section -->
+  <url>
+    <loc>https://bfarmcon.com/#services</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- About BFARMCON & Leadership Section -->
+  <url>
+    <loc>https://bfarmcon.com/#about</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
