@@ -14,6 +14,15 @@
       name="keywords"
       content="BFARMCON, Farmers Connect, Commodity Aggregation, Agro Allied Nigeria, Soya, Maize, Sesame, Agriculture Kaduna, Agribusiness Taraba, Benue, Niger"
     />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BFARMCON LIMITED" />
+    <meta property="og:locale" content="en_NG" />
+    <meta property="og:url" content="https://bfarmcon.com/" />
     <meta
       property="og:title"
       content="BFARMCON LIMITED | Feeding Tomorrow including Everyone"
@@ -22,8 +31,22 @@
       property="og:description"
       content="Sustainable Agro-Allied Commodity Aggregation, ESG Consultancy & Buying Agency Services across Nigeria."
     />
-    <meta property="og:image" content="assets/logo.jpg" />
-    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://bfarmcon.com/assets/logo.jpg" />
+    <meta property="og:image:secure_url" content="https://bfarmcon.com/assets/logo.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="856" />
+    <meta property="og:image:height" content="856" />
+    <meta property="og:image:alt" content="BFARMCON LIMITED - Farmers Connect Logo" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BFARMCON LIMITED | Feeding Tomorrow including Everyone" />
+    <meta name="twitter:description" content="Sustainable Agro-Allied Commodity Aggregation, ESG Advisory & Buying Agency Services across Nigeria." />
+    <meta name="twitter:image" content="https://bfarmcon.com/assets/logo.jpg" />
+    <meta name="twitter:image:alt" content="BFARMCON LIMITED - Feeding Tomorrow including Everyone" />
+
+    <!-- Core Web Vitals Resource Hints -->
+    <link rel="preload" as="image" href="assets/hero.jpg" fetchpriority="high" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -48,6 +71,75 @@
       title="Sitemap"
       href="/sitemap.xml"
     />
+
+    <!-- Schema.org Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["Organization", "AgriBusiness"],
+          "@id": "https://bfarmcon.com/#organization",
+          "name": "BFARMCON LIMITED",
+          "legalName": "BFARMCON LIMITED",
+          "alternateName": "Farmers Connect",
+          "url": "https://bfarmcon.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://bfarmcon.com/assets/logo.jpg",
+            "width": 856,
+            "height": 856
+          },
+          "image": "https://bfarmcon.com/assets/hero.jpg",
+          "description": "BFARMCON LIMITED is an agricultural consultancy, local buying agency, and agro-allied commodity aggregation enterprise operating across Kaduna, Taraba, Benue, Niger, and Abuja.",
+          "slogan": "Feeding Tomorrow including Everyone",
+          "telephone": "+2348166982970",
+          "email": "bfarmcon@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "No 15 Assemblies of God Road zokoriko, Kudenda",
+            "addressLocality": "Kaduna",
+            "addressRegion": "Kaduna State",
+            "addressCountry": "NG"
+          },
+          "founder": {
+            "@type": "Person",
+            "name": "Samuel Joshua Funom",
+            "jobTitle": "Managing Director",
+            "alumniOf": "Ahmadu Bello University (ABU), Zaria"
+          },
+          "sameAs": [
+            "https://www.facebook.com/share/1LxchVgEgT/"
+          ],
+          "areaServed": [
+            { "@type": "AdministrativeArea", "name": "Kaduna State" },
+            { "@type": "AdministrativeArea", "name": "Federal Capital Territory, Abuja" },
+            { "@type": "AdministrativeArea", "name": "Taraba State" },
+            { "@type": "AdministrativeArea", "name": "Benue State" },
+            { "@type": "AdministrativeArea", "name": "Niger State" }
+          ],
+          "knowsAbout": [
+            "Agro-Allied Commodity Aggregation",
+            "ESG Advisory & Sustainable Agriculture",
+            "Local Buying Agency (LBA)",
+            "Food Safety, GAP & HACCP Standards",
+            "Grain & Legume Supply Chain Traceability",
+            "Trade-Finance Linkage & Monitoring"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://bfarmcon.com/#website",
+          "url": "https://bfarmcon.com/",
+          "name": "BFARMCON LIMITED",
+          "publisher": {
+            "@id": "https://bfarmcon.com/#organization"
+          },
+          "inLanguage": "en-NG"
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <!-- Top Notification / Ticker Bar -->
@@ -96,6 +188,9 @@
             src="assets/logo.jpg"
             alt="BFARMCON LIMITED Logo"
             class="logo-img"
+            width="44"
+            height="44"
+            loading="eager"
           />
           <div class="brand-text">
             <span class="brand-name">BFARMCON</span>
@@ -150,7 +245,14 @@
     <div class="mobile-nav-drawer" id="mobileNavDrawer">
       <div class="drawer-header">
         <div class="drawer-brand">
-          <img src="assets/logo.jpg" alt="BFARMCON Logo" class="drawer-logo" />
+          <img
+            src="assets/logo.jpg"
+            alt="BFARMCON Logo"
+            class="drawer-logo"
+            width="36"
+            height="36"
+            loading="lazy"
+          />
           <span>BFARMCON LTD</span>
         </div>
         <button
@@ -294,6 +396,10 @@
                 src="assets/hero.jpg"
                 alt="BFARMCON Agricultural Operations Manager"
                 class="hero-image"
+                width="1200"
+                height="896"
+                loading="eager"
+                fetchpriority="high"
               />
 
               <!-- Floating Metric Card Top-Right -->
@@ -358,6 +464,9 @@
                   src="assets/md-photo.jpg"
                   alt="Samuel Joshua Funom - Managing Director, BFARMCON LIMITED"
                   class="about-image md-portrait-image"
+                  width="507"
+                  height="591"
+                  loading="lazy"
                 />
                 <div class="md-verified-badge">
                   <i class="fa-solid fa-circle-check"></i>
@@ -550,6 +659,9 @@
               src="assets/cooperative.jpg"
               alt="Nigerian Farmer Cooperatives Partnering with BFARMCON"
               class="banner-photo"
+              width="1200"
+              height="896"
+              loading="lazy"
             />
             <div class="banner-badge">
               <i class="fa-solid fa-people-roof"></i>
@@ -1296,6 +1408,9 @@
                 src="assets/logo.jpg"
                 alt="BFARMCON LIMITED"
                 class="footer-logo"
+                width="50"
+                height="50"
+                loading="lazy"
               />
               <div>
                 <span class="footer-title">BFARMCON LIMITED</span>
