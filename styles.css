@@ -2925,7 +2925,14 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 18px rgba(37, 211, 102, 0.45);
   z-index: 998;
   text-decoration: none;
+  cursor: grab;
+  touch-action: none;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+.floating-whatsapp-desk.is-dragging {
+  cursor: grabbing;
+  transition: none;
 }
 
 .floating-whatsapp-desk::before {

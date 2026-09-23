@@ -542,4 +542,88 @@ _Transmitted via BFARMCON Website_`;
     });
   }
 
+  /* ========================================================================
+     11. Draggable WhatsApp Quick-Trade Desk Button
+     ======================================================================== */
+  const floatingWhatsAppDesk = document.getElementById('floatingWhatsAppDesk');
+
+  if (floatingWhatsAppDesk) {
+    const savedPosition = localStorage.getItem('bfarmcon_whatsapp_position');
+    let dragState = null;
+
+    if (savedPosition) {
+      try {
+        const position = JSON.parse(savedPosition);
+        floatingWhatsAppDesk.style.left = `${position.left}px`;
+        floatingWhatsAppDesk.style.top = `${position.top}px`;
+        floatingWhatsAppDesk.style.right = 'auto';
+        floatingWhatsAppDesk.style.bottom = 'auto';
+      } catch (error) {
+        localStorage.removeItem('bfarmcon_whatsapp_position');
+      }
+    }
+
+    floatingWhatsAppDesk.addEventListener('pointerdown', event => {
+      const rect = floatingWhatsAppDesk.getBoundingClientRect();
+      dragState = {
+        pointerId: event.pointerId,
+        startX: event.clientX,
+        startY: event.clientY,
+        offsetX: event.clientX - rect.left,
+        offsetY: event.clientY - rect.top,
+        moved: false
+      };
+      floatingWhatsAppDesk.setPointerCapture(event.pointerId);
+      floatingWhatsAppDesk.classList.add('is-dragging');
+    });
+
+    floatingWhatsAppDesk.addEventListener('pointermove', event => {
+      if (!dragState || event.pointerId !== dragState.pointerId) return;
+
+      const movedX = Math.abs(event.clientX - dragState.startX);
+      const movedY = Math.abs(event.clientY - dragState.startY);
+      if (movedX > 4 || movedY > 4) dragState.moved = true;
+      if (!dragState.moved) return;
+
+      const maxLeft = window.innerWidth - floatingWhatsAppDesk.offsetWidth;
+      const maxTop = window.innerHeight - floatingWhatsAppDesk.offsetHeight;
+      const left = Math.min(Math.max(event.clientX - dragState.offsetX, 0), maxLeft);
+      const top = Math.min(Math.max(event.clientY - dragState.offsetY, 0), maxTop);
+
+      floatingWhatsAppDesk.style.left = `${left}px`;
+      floatingWhatsAppDesk.style.top = `${top}px`;
+      floatingWhatsAppDesk.style.right = 'auto';
+      floatingWhatsAppDesk.style.bottom = 'auto';
+    });
+
+    floatingWhatsAppDesk.addEventListener('pointerup', event => {
+      if (!dragState || event.pointerId !== dragState.pointerId) return;
+
+      if (dragState.moved) {
+        event.preventDefault();
+        floatingWhatsAppDesk.dataset.wasDragged = 'true';
+        localStorage.setItem('bfarmcon_whatsapp_position', JSON.stringify({
+          left: floatingWhatsAppDesk.offsetLeft,
+          top: floatingWhatsAppDesk.offsetTop
+        }));
+      }
+
+      floatingWhatsAppDesk.classList.remove('is-dragging');
+      floatingWhatsAppDesk.releasePointerCapture(event.pointerId);
+      dragState = null;
+    });
+
+    floatingWhatsAppDesk.addEventListener('click', event => {
+      if (floatingWhatsAppDesk.dataset.wasDragged === 'true') {
+        event.preventDefault();
+        delete floatingWhatsAppDesk.dataset.wasDragged;
+      }
+    });
+
+    floatingWhatsAppDesk.addEventListener('pointercancel', () => {
+      floatingWhatsAppDesk.classList.remove('is-dragging');
+      dragState = null;
+    });
+  }
+
 });
