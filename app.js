@@ -309,12 +309,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Regional hub WhatsApp contact dispatch map
     const hubWhatsAppMap = {
-      'Abuja Hub': '2348166482970',
+      'Abuja Hub': '2348166982970',
       'Kaduna (Head Office)': '2348068716001',
       'Taraba Hub': '2347075453682',
       'Benue Hub': '2347086646772',
       'Niger Hub': '2347086268954',
-      'All Hubs': '2348166482970'
+      'All Hubs': '2348166982970'
     };
 
     const roleLabels = {
@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Target WhatsApp number based on regional selection (fallback to Abuja / Kaduna)
-      const targetPhone = hubWhatsAppMap[hub] || '2348166482970';
+      const targetPhone = hubWhatsAppMap[hub] || '2348166982970';
 
       // Build structured message for WhatsApp
       const waText = 
