@@ -2879,6 +2879,116 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
   }
 
+  /* Hero CTA Group - 100% Full-Width Responsive */
+  .hero-cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .hero-cta-group .btn,
+  .hero-cta-group .btn-large {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.95rem 1.25rem !important;
+    font-size: 1rem !important;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: var(--radius-md);
+    box-sizing: border-box;
+  }
+
+  /* Hero Visual & Image of Man and Woman in Farm */
+  .hero-visual-col {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .hero-image-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    aspect-ratio: 4 / 3 !important;
+    border-radius: var(--radius-xl);
+    position: relative;
+    overflow: visible;
+  }
+
+  .hero-image {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: 4 / 3 !important;
+    object-fit: cover !important;
+    object-position: center 20% !important;
+    border-radius: var(--radius-xl);
+    display: block;
+    box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.65), 0 0 0 1px var(--border-color);
+  }
+
+  .hero-aura-ring {
+    inset: -6px;
+    border-radius: var(--radius-xl);
+  }
+
+  /* Compact Pill Badges (Zero Obstruction of Man & Woman) */
+  .floating-badge {
+    position: absolute;
+    z-index: 3;
+    padding: 0.35rem 0.75rem !important;
+    border-radius: var(--radius-full) !important;
+    gap: 0.45rem !important;
+    background: rgba(10, 19, 12, 0.88) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(34, 197, 94, 0.4) !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5) !important;
+    animation: none !important;
+    pointer-events: none;
+  }
+
+  .badge-top-right {
+    top: 10px !important;
+    right: 10px !important;
+    left: auto !important;
+    bottom: auto !important;
+  }
+
+  .badge-bottom-left {
+    bottom: 10px !important;
+    left: 10px !important;
+    right: auto !important;
+    top: auto !important;
+  }
+
+  .badge-icon {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 0.78rem !important;
+    border-radius: var(--radius-full) !important;
+    flex-shrink: 0;
+  }
+
+  .badge-content strong {
+    font-size: 0.76rem !important;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .badge-content small {
+    display: none !important;
+  }
+
   .about-section,
   .services-section,
   .contact-section,
@@ -3307,10 +3417,11 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 2rem;
   }
 
-  .hero-cta-group .btn {
-    width: 100%;
-    padding: 0.85rem 1.25rem;
-    font-size: 0.95rem;
+  .hero-cta-group .btn,
+  .hero-cta-group .btn-large {
+    width: 100% !important;
+    padding: 0.9rem 1.15rem !important;
+    font-size: 0.96rem !important;
     justify-content: center;
   }
 
@@ -3327,15 +3438,21 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .hero-image-wrapper {
-    max-width: 100%;
-    height: auto;
-    aspect-ratio: 460 / 480;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    aspect-ratio: 4 / 3 !important;
   }
 
   .hero-image {
-    height: auto;
-    max-height: 380px;
-    width: 100%;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: 4 / 3 !important;
+    object-fit: cover !important;
+    object-position: center 20% !important;
   }
 
   .hero-aura-ring {
@@ -3343,33 +3460,33 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .floating-badge {
-    padding: 0.45rem 0.75rem;
-    max-width: 78%;
+    padding: 0.32rem 0.65rem !important;
+    max-width: 75%;
   }
 
   .badge-top-right {
-    top: 10px;
-    right: 8px;
+    top: 10px !important;
+    right: 8px !important;
   }
 
   .badge-bottom-left {
-    bottom: 10px;
-    left: 8px;
+    bottom: 10px !important;
+    left: 8px !important;
   }
 
   .badge-icon {
-    width: 30px;
-    height: 30px;
-    font-size: 0.9rem;
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 0.75rem !important;
     flex-shrink: 0;
   }
 
   .badge-content strong {
-    font-size: 0.8rem;
+    font-size: 0.74rem !important;
   }
 
   .badge-content small {
-    font-size: 0.68rem;
+    display: none !important;
   }
 
   .hero-bg-glow {
@@ -3407,6 +3524,13 @@ h1, h2, h3, h4, h5, h6 {
 
   .hero-title {
     font-size: 1.62rem !important;
+  }
+
+  .hero-cta-group .btn,
+  .hero-cta-group .btn-large {
+    font-size: 0.88rem !important;
+    padding: 0.82rem 0.75rem !important;
+    gap: 0.35rem;
   }
 
   .hero-typing-wrap {
