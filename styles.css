@@ -745,7 +745,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .typing-text {
   display: inline-block;
-  min-width: 240px;
+  min-width: 160px;
   text-align: left;
   color: var(--brand-green-primary);
   text-decoration: underline;
@@ -2987,9 +2987,89 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
   .hero-title {
-    font-size: 2.15rem;
+    font-size: 1.85rem !important;
+    line-height: 1.22;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-sup {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-typing-wrap {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 1.45rem;
+    min-height: 2.2em;
+  }
+
+  .typing-text {
+    min-width: 0 !important;
+    display: inline;
+    word-break: break-word;
+  }
+
+  .hero-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .hero-trust-row {
+    flex-direction: column;
+    gap: 0.65rem;
+    align-items: flex-start;
+    padding-top: 1.25rem;
+  }
+
+  .trust-item {
+    font-size: 0.82rem;
+    white-space: normal;
+  }
+
+  .hero-aura-ring {
+    inset: 0;
+  }
+
+  .floating-badge {
+    padding: 0.45rem 0.75rem;
+    max-width: 78%;
+  }
+
+  .badge-top-right {
+    top: 12px;
+    right: 8px;
+  }
+
+  .badge-bottom-left {
+    bottom: 12px;
+    left: 8px;
+  }
+
+  .badge-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  .badge-content strong {
+    font-size: 0.82rem;
+  }
+
+  .badge-content small {
+    font-size: 0.7rem;
+  }
+
+  .hero-bg-glow {
+    width: 260px;
+    height: 260px;
+    right: 0;
+    top: 20px;
   }
 
   .md-portrait-image {
@@ -3002,6 +3082,36 @@ h1, h2, h3, h4, h5, h6 {
 
   .leadership-name {
     font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.65rem !important;
+  }
+
+  .hero-typing-wrap {
+    font-size: 1.3rem;
+  }
+
+  .hero-social-strip {
+    gap: 0.4rem;
+  }
+
+  .hero-social-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 0.85rem;
+  }
+
+  .btn {
+    padding: 0.65rem 1.2rem;
+    font-size: 0.88rem;
   }
 }
 

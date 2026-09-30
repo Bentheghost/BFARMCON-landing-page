@@ -1347,6 +1347,7 @@
                           type="text"
                           id="contactName"
                           name="name"
+                          autocomplete="name"
                           required
                           placeholder="e.g. Alhaji Sani Garba / Flour Mills PLC"
                         />
@@ -1361,6 +1362,7 @@
                           type="email"
                           id="contactEmail"
                           name="email"
+                          autocomplete="email"
                           required
                           placeholder="yourname@domain.com"
                         />
@@ -1379,6 +1381,7 @@
                           type="tel"
                           id="contactPhone"
                           name="phone"
+                          autocomplete="tel"
                           required
                           placeholder="+234 800 000 0000"
                         />
@@ -1487,14 +1490,15 @@
 
                   <!-- Submission Channel Selector -->
                   <div class="form-group channel-selector-group">
-                    <label class="channel-label"
+                    <span class="channel-label"
                       ><i class="fa-solid fa-paper-plane"></i> Choose Submission
-                      Channel *</label
+                      Channel *</span
                     >
                     <div class="channel-toggle-grid">
-                      <label class="channel-btn active" data-channel="both">
+                      <label for="channelBoth" class="channel-btn active" data-channel="both">
                         <input
                           type="radio"
+                          id="channelBoth"
                           name="submission_channel"
                           value="both"
                           checked
@@ -1511,9 +1515,10 @@
                           >
                         </span>
                       </label>
-                      <label class="channel-btn" data-channel="whatsapp">
+                      <label for="channelWhatsapp" class="channel-btn" data-channel="whatsapp">
                         <input
                           type="radio"
+                          id="channelWhatsapp"
                           name="submission_channel"
                           value="whatsapp"
                           class="channel-radio"
@@ -1529,9 +1534,10 @@
                           >
                         </span>
                       </label>
-                      <label class="channel-btn" data-channel="email">
+                      <label for="channelEmail" class="channel-btn" data-channel="email">
                         <input
                           type="radio"
+                          id="channelEmail"
                           name="submission_channel"
                           value="email"
                           class="channel-radio"
