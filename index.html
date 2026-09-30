@@ -20,10 +20,7 @@
     />
     <meta name="googlebot" content="index, follow" />
     <meta name="google-site-verification" content="z3Q_ZVAGmeF8LCTWGfoO50Hh_6cWkm1AdvnOZT7Y39E" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="upgrade-insecure-requests"
-    />
+
 
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website" />
@@ -71,25 +68,52 @@
     <link
       rel="preload"
       as="image"
-      href="assets/hero.jpg"
+      href="assets/hero-800.webp"
+      type="image/webp"
       fetchpriority="high"
     />
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts (Non-render-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
-    <!-- Font Awesome Icons -->
+    <!-- Font Awesome Icons (Non-render-blocking) -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      />
+    </noscript>
 
-    <link rel="stylesheet" href="styles.css?v=4.0" />
+    <link rel="stylesheet" href="styles.css?v=4.1" />
     <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
     <link rel="canonical" href="https://www.bfarmcon.com/" />
     <link
@@ -240,14 +264,17 @@
     <header class="main-header" id="mainHeader">
       <div class="container nav-container">
         <a href="#hero" class="brand-logo" id="brandLogo">
-          <img
-            src="assets/logo.jpg"
-            alt="BFARMCON LIMITED Logo"
-            class="logo-img"
-            width="44"
-            height="44"
-            loading="eager"
-          />
+          <picture>
+            <source srcset="assets/logo-128.webp" type="image/webp" />
+            <img
+              src="assets/logo.jpg"
+              alt="BFARMCON LIMITED Logo"
+              class="logo-img"
+              width="44"
+              height="44"
+              loading="eager"
+            />
+          </picture>
           <div class="brand-text">
             <span class="brand-name">BFARMCON</span>
             <span class="brand-sub">LIMITED</span>
@@ -301,14 +328,17 @@
     <div class="mobile-nav-drawer" id="mobileNavDrawer">
       <div class="drawer-header">
         <div class="drawer-brand">
-          <img
-            src="assets/logo.jpg"
-            alt="BFARMCON Logo"
-            class="drawer-logo"
-            width="36"
-            height="36"
-            loading="lazy"
-          />
+          <picture>
+            <source srcset="assets/logo-128.webp" type="image/webp" />
+            <img
+              src="assets/logo.jpg"
+              alt="BFARMCON Logo"
+              class="drawer-logo"
+              width="36"
+              height="36"
+              loading="lazy"
+            />
+          </picture>
           <span>BFARMCON LTD</span>
         </div>
         <button
@@ -499,15 +529,23 @@
           <div class="hero-visual-col">
             <div class="hero-image-wrapper">
               <div class="hero-aura-ring"></div>
-              <img
-                src="assets/hero.jpg"
-                alt="BFARMCON Agricultural Operations Manager"
-                class="hero-image"
-                width="1200"
-                height="896"
-                loading="eager"
-                fetchpriority="high"
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcset="assets/hero-800.webp 800w, assets/hero.webp 1200w"
+                  sizes="(max-width: 768px) 100vw, 460px"
+                />
+                <img
+                  src="assets/hero.jpg"
+                  alt="BFARMCON Agricultural Operations Manager"
+                  class="hero-image"
+                  width="460"
+                  height="480"
+                  loading="eager"
+                  fetchpriority="high"
+                  decoding="async"
+                />
+              </picture>
 
               <!-- Floating Metric Card Top-Right -->
               <div class="floating-badge badge-top-right">
@@ -567,14 +605,18 @@
             <!-- Left Column: Managing Director Executive Portrait & Leadership Card -->
             <div class="about-dia-left">
               <div class="about-image-frame md-portrait-frame">
-                <img
-                  src="assets/md-photo.jpg"
-                  alt="Samuel Joshua Funom - Managing Director, BFARMCON LIMITED"
-                  class="about-image md-portrait-image"
-                  width="507"
-                  height="591"
-                  loading="lazy"
-                />
+                <picture>
+                  <source type="image/webp" srcset="assets/md-photo.webp" />
+                  <img
+                    src="assets/md-photo.jpg"
+                    alt="Samuel Joshua Funom - Managing Director, BFARMCON LIMITED"
+                    class="about-image md-portrait-image"
+                    width="507"
+                    height="591"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
                 <div class="md-verified-badge">
                   <i class="fa-solid fa-circle-check"></i>
                   <span>Managing Director</span>
@@ -762,14 +804,22 @@
       <section class="cooperative-banner-section">
         <div class="container banner-inner">
           <div class="banner-image-side">
-            <img
-              src="assets/cooperative.jpg"
-              alt="Nigerian Farmer Cooperatives Partnering with BFARMCON"
-              class="banner-photo"
-              width="1200"
-              height="896"
-              loading="lazy"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcset="assets/cooperative-800.webp 800w, assets/cooperative.webp 1200w"
+                sizes="(max-width: 768px) 100vw, 560px"
+              />
+              <img
+                src="assets/cooperative.jpg"
+                alt="Nigerian Farmer Cooperatives Partnering with BFARMCON"
+                class="banner-photo"
+                width="1200"
+                height="896"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div class="banner-badge">
               <i class="fa-solid fa-people-roof"></i>
               <span>Smallholder Empowerment</span>
@@ -1102,7 +1152,8 @@
                         target="_blank"
                         rel="noopener noreferrer"
                         class="hub-wa-link"
-                        title="Chat on WhatsApp (+234 816 698 2970)"
+                        title="Chat with Abuja Desk on WhatsApp (+234 816 698 2970)"
+                        aria-label="Chat with Abuja Desk on WhatsApp"
                       >
                         <i class="fa-brands fa-whatsapp"></i>
                       </a>
@@ -1124,7 +1175,8 @@
                         target="_blank"
                         rel="noopener noreferrer"
                         class="hub-wa-link"
-                        title="Chat on WhatsApp"
+                        title="Chat with Taraba Hub on WhatsApp (+234 707 545 3682)"
+                        aria-label="Chat with Taraba Hub on WhatsApp"
                       >
                         <i class="fa-brands fa-whatsapp"></i>
                       </a>
@@ -1148,7 +1200,8 @@
                         target="_blank"
                         rel="noopener noreferrer"
                         class="hub-wa-link"
-                        title="Chat on WhatsApp"
+                        title="Chat with Benue Hub on WhatsApp (+234 708 664 6772)"
+                        aria-label="Chat with Benue Hub on WhatsApp"
                       >
                         <i class="fa-brands fa-whatsapp"></i>
                       </a>
@@ -1172,7 +1225,8 @@
                         target="_blank"
                         rel="noopener noreferrer"
                         class="hub-wa-link"
-                        title="Chat on WhatsApp"
+                        title="Chat with Niger Hub on WhatsApp (+234 708 626 8954)"
+                        aria-label="Chat with Niger Hub on WhatsApp"
                       >
                         <i class="fa-brands fa-whatsapp"></i>
                       </a>
@@ -1548,14 +1602,17 @@
           <!-- Brand Info -->
           <div class="footer-brand-col">
             <div class="footer-logo-wrap">
-              <img
-                src="assets/logo.jpg"
-                alt="BFARMCON LIMITED"
-                class="footer-logo"
-                width="50"
-                height="50"
-                loading="lazy"
-              />
+              <picture>
+                <source srcset="assets/logo-128.webp" type="image/webp" />
+                <img
+                  src="assets/logo.jpg"
+                  alt="BFARMCON LIMITED"
+                  class="footer-logo"
+                  width="44"
+                  height="44"
+                  loading="lazy"
+                />
+              </picture>
               <div>
                 <span class="footer-title">BFARMCON LIMITED</span>
                 <span class="footer-subtitle"
@@ -1752,6 +1809,6 @@
       <i class="fa-solid fa-arrow-up"></i>
     </button>
 
-    <script src="app.js"></script>
+    <script src="app.js" defer></script>
   </body>
 </html>
