@@ -129,23 +129,33 @@
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": ["Organization", "AgriBusiness"],
-            "@id": "https://bfarmcon.com/#organization",
+            "@type": ["Organization", "AgriBusiness", "LocalBusiness"],
+            "@id": "https://www.bfarmcon.com/#organization",
             "name": "BFARMCON LIMITED",
             "legalName": "BFARMCON LIMITED",
             "alternateName": "Farmers Connect",
-            "url": "https://bfarmcon.com/",
+            "url": "https://www.bfarmcon.com/",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://bfarmcon.com/assets/logo.jpg",
+              "@id": "https://www.bfarmcon.com/#logo",
+              "url": "https://www.bfarmcon.com/assets/logo.jpg",
               "width": 856,
-              "height": 856
+              "height": 856,
+              "caption": "BFARMCON LIMITED Logo"
             },
-            "image": "https://bfarmcon.com/assets/hero.jpg",
-            "description": "BFARMCON LIMITED is an agricultural consultancy, local buying agency, and agro-allied commodity aggregation enterprise operating across Kaduna, Taraba, Benue, Niger, and Abuja.",
+            "image": {
+              "@type": "ImageObject",
+              "@id": "https://www.bfarmcon.com/#hero-image",
+              "url": "https://www.bfarmcon.com/assets/hero.jpg",
+              "caption": "BFARMCON Agro-Allied Operations and Agricultural Aggregation"
+            },
+            "description": "BFARMCON LIMITED is a premier Nigerian agro-allied commodity aggregation enterprise, local buying agency (LBA), ESG advisory, and trade-finance monitoring service provider operating across Kaduna, Abuja, Taraba, Benue, and Niger.",
             "slogan": "Feeding Tomorrow including Everyone",
             "telephone": "+2348166982970",
             "email": "bfarmcon@gmail.com",
+            "priceRange": "$$",
+            "currenciesAccepted": "NGN, USD",
+            "paymentAccepted": "Bank Transfer, Letter of Credit",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "No 15 Assemblies of God Road zokoriko, Kudenda",
@@ -153,6 +163,35 @@
               "addressRegion": "Kaduna State",
               "addressCountry": "NG"
             },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 10.4725,
+              "longitude": 7.3758
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "08:00",
+                "closes": "17:00"
+              }
+            ],
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "telephone": "+2348166982970",
+                "contactType": "sales",
+                "areaServed": "NG",
+                "availableLanguage": ["English", "Hausa"]
+              },
+              {
+                "@type": "ContactPoint",
+                "telephone": "+2348068716001",
+                "contactType": "headquarters",
+                "areaServed": "NG",
+                "availableLanguage": ["English", "Hausa"]
+              }
+            ],
             "founder": {
               "@type": "Person",
               "name": "Samuel Joshua Funom",
@@ -160,16 +199,13 @@
               "alumniOf": "Ahmadu Bello University (ABU), Zaria"
             },
             "sameAs": [
-              "https://www.facebook.com/share/1LxchVgEgT/",
               "https://www.linkedin.com/company/bfarmcon-limited",
-              "https://www.youtube.com/@BFARMCONLIMITED"
+              "https://www.youtube.com/@BFARMCONLIMITED",
+              "https://www.facebook.com/share/1LxchVgEgT/"
             ],
             "areaServed": [
               { "@type": "AdministrativeArea", "name": "Kaduna State" },
-              {
-                "@type": "AdministrativeArea",
-                "name": "Federal Capital Territory, Abuja"
-              },
+              { "@type": "AdministrativeArea", "name": "Federal Capital Territory, Abuja" },
               { "@type": "AdministrativeArea", "name": "Taraba State" },
               { "@type": "AdministrativeArea", "name": "Benue State" },
               { "@type": "AdministrativeArea", "name": "Niger State" }
@@ -181,7 +217,61 @@
               "Food Safety, GAP & HACCP Standards",
               "Grain & Legume Supply Chain Traceability",
               "Trade-Finance Linkage & Monitoring"
-            ]
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Agro-Allied Solutions & Sourcing",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Agricultural Commodity Aggregation",
+                    "description": "Traceable aggregation of grains, oilseeds, and legumes including Rice, Soya Beans, Maize, Sesame, Cowpea, and Ginger."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Local Buying Agency (LBA)",
+                    "description": "Institutional procurement, off-take contract fulfillment, and direct farmgate-to-factory supply chains."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "ESG Advisory & Sustainability",
+                    "description": "Smallholder empowerment, regenerative agriculture practices, deforestation-free compliance, and carbon-smart farming."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Food Safety & Standards (GAP / HACCP)",
+                    "description": "Quality assurance, mycotoxin & aflatoxin screening, and calibrated moisture standard control."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Trade-Finance Linkage & Monitoring",
+                    "description": "Structured collateral management, crop monitoring, and financial institution partnership linkages."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Direct Market Linkage",
+                    "description": "Connecting smallholder farmer cooperatives directly to industrial off-takers and food processors."
+                  }
+                }
+              ]
+            }
           },
           {
             "@type": "WebSite",
@@ -190,6 +280,22 @@
             "name": "BFARMCON LIMITED",
             "publisher": {
               "@id": "https://www.bfarmcon.com/#organization"
+            },
+            "inLanguage": "en-NG"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.bfarmcon.com/#webpage",
+            "url": "https://www.bfarmcon.com/",
+            "name": "BFARMCON LIMITED | Sustainable Agro-Allied Commodity Aggregation & ESG Advisory",
+            "isPartOf": {
+              "@id": "https://www.bfarmcon.com/#website"
+            },
+            "about": {
+              "@id": "https://www.bfarmcon.com/#organization"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://www.bfarmcon.com/#hero-image"
             },
             "inLanguage": "en-NG"
           }
