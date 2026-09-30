@@ -602,6 +602,34 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
 }
 
+.drawer-social-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 0.35rem;
+}
+
+.drawer-social-row a {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+}
+
+.drawer-social-row a:hover {
+  background: var(--brand-green-primary);
+  color: #ffffff;
+  border-color: var(--brand-green-primary);
+  transform: translateY(-2px);
+}
+
 /* --------------------------------------------------------------------------
    7. Hero Section
    -------------------------------------------------------------------------- */
@@ -767,6 +795,24 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--brand-green-primary);
   transform: translateY(-3px);
   box-shadow: 0 6px 16px rgba(22, 163, 74, 0.4);
+}
+
+.hero-social-icon.icon-linkedin:hover {
+  background: #0a66c2;
+  border-color: #0a66c2;
+  box-shadow: 0 6px 16px rgba(10, 102, 194, 0.4);
+}
+
+.hero-social-icon.icon-youtube:hover {
+  background: #ff0000;
+  border-color: #ff0000;
+  box-shadow: 0 6px 16px rgba(255, 0, 0, 0.4);
+}
+
+.hero-social-icon.icon-facebook:hover {
+  background: #1877f2;
+  border-color: #1877f2;
+  box-shadow: 0 6px 16px rgba(24, 119, 242, 0.4);
 }
 
 .hero-cta-group {
@@ -2140,6 +2186,23 @@ h1, h2, h3, h4, h5, h6 {
 .channel-icon {
   font-size: 1.35rem;
   color: var(--brand-green-primary);
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.channel-icon.channel-linkedin {
+  color: #0a66c2;
+}
+
+.channel-icon.channel-youtube {
+  color: #ff0000;
+}
+
+.channel-icon.channel-facebook {
+  color: #1877f2;
+}
+
+.direct-channel-card:hover .channel-icon {
+  transform: scale(1.12);
 }
 
 .direct-channel-card small {
@@ -2536,6 +2599,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer-social-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.75rem;
 }
 
@@ -2555,6 +2619,18 @@ h1, h2, h3, h4, h5, h6 {
 .footer-social-links a:hover {
   background: var(--brand-green-primary);
   transform: translateY(-2px);
+}
+
+.footer-social-links a.link-linkedin:hover {
+  background: #0a66c2;
+}
+
+.footer-social-links a.link-youtube:hover {
+  background: #ff0000;
+}
+
+.footer-social-links a.link-facebook:hover {
+  background: #1877f2;
 }
 
 .footer-col-title {
