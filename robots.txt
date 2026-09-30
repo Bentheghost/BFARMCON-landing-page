@@ -5,4 +5,4 @@ User-agent: *
 Allow: /
 
 # Sitemap Location for Google Search Console & Search Engine Discovery
-Sitemap: https://bfarmcon.com/sitemap.xml
+Sitemap: https://www.bfarmcon.com/sitemap.xml
