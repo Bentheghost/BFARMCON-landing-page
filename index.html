@@ -1699,29 +1699,20 @@
                   </button>
                 </form>
 
-                <!-- Form Success Alert (Hidden by default) -->
-                <div class="form-success-banner" id="formSuccessBanner">
+                <!-- Form Status Alert (Hidden by default) -->
+                <div class="form-success-banner" id="formSuccessBanner" role="status" aria-live="polite">
                   <i
-                    class="fa-solid fa-circle-check"
-                    style="color: #22c55e; font-size: 1.85rem"
+                    class="fa-solid fa-circle-check form-banner-icon"
+                    id="formBannerIcon"
                   ></i>
-                  <div>
+                  <div class="banner-body">
                     <h4 id="successBannerTitle">
                       Inquiry Dispatched Successfully!
                     </h4>
                     <p id="successBannerMsg">
                       Your inquiry has been emailed directly to
                       <strong>bfarmcon@gmail.com</strong> and routed to the
-                      regional hub desk. If WhatsApp did not launch
-                      automatically,
-                      <a
-                        href="#"
-                        id="manualWhatsAppLink"
-                        target="_blank"
-                        class="banner-chat-link"
-                        ><i class="fa-brands fa-whatsapp"></i> Click here to
-                        chat on WhatsApp</a
-                      >.
+                      regional hub desk.
                     </p>
                   </div>
                 </div>

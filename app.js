@@ -6,13 +6,43 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ==========================================================================
+     Safe Storage Helper (prevents crashes in private/incognito or restricted modes)
+     ========================================================================== */
+  const safeStorage = {
+    get(key, fallback = null) {
+      try {
+        const val = localStorage.getItem(key);
+        return val !== null ? val : fallback;
+      } catch (e) {
+        return fallback;
+      }
+    },
+    set(key, value) {
+      try {
+        localStorage.setItem(key, value);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    },
+    remove(key) {
+      try {
+        localStorage.removeItem(key);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+  };
+
+  /* ==========================================================================
      1. Dark / Light Theme Switcher with LocalStorage Persistence
      ========================================================================== */
   const themeToggleBtn = document.getElementById('themeToggleBtn');
   const htmlRoot = document.documentElement;
 
   // Check saved preference or default to dark theme
-  const savedTheme = localStorage.getItem('bfarmcon_theme') || 'dark';
+  const savedTheme = safeStorage.get('bfarmcon_theme', 'dark');
   htmlRoot.setAttribute('data-theme', savedTheme);
 
   if (themeToggleBtn) {
@@ -20,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentTheme = htmlRoot.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       htmlRoot.setAttribute('data-theme', newTheme);
-      localStorage.setItem('bfarmcon_theme', newTheme);
+      safeStorage.set('bfarmcon_theme', newTheme);
     });
   }
 
@@ -304,8 +334,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (stakeholderForm) {
-    // Web3Forms direct email access key (delivers to bfarmcon@gmail.com)
-    const WEB3FORMS_ACCESS_KEY = '03cfcc63-f7f7-487b-a289-192a74dcdbc2';
+    // Web3Forms direct email access key (configured for client's verified account)
+    const WEB3FORMS_ACCESS_KEY = '9df22f24-f5ca-4111-bd0d-1371361f5c6a';
 
     // Regional hub WhatsApp contact dispatch map
     const hubWhatsAppMap = {
@@ -324,8 +354,89 @@ document.addEventListener('DOMContentLoaded', () => {
       'general': 'General Inquiry'
     };
 
-    stakeholderForm.addEventListener('submit', (e) => {
+    let formBannerTimer = null;
+
+    // Unified notification banner with success, warning, and error states
+    function showFormNotice({
+      type = 'success', // 'success' | 'warning' | 'error'
+      title = '',
+      message = '',
+      actions = []
+    }) {
+      if (!formSuccessBanner) return;
+
+      // Update state modifier classes
+      formSuccessBanner.classList.remove('state-warning', 'state-error', 'state-success');
+      formSuccessBanner.classList.add(`state-${type}`);
+
+      // Update Icon
+      const bannerIcon = document.getElementById('formBannerIcon') || formSuccessBanner.querySelector('i');
+      if (bannerIcon) {
+        bannerIcon.removeAttribute('style');
+        if (type === 'success') {
+          bannerIcon.className = 'fa-solid fa-circle-check form-banner-icon';
+        } else if (type === 'warning') {
+          bannerIcon.className = 'fa-solid fa-triangle-exclamation form-banner-icon';
+        } else {
+          bannerIcon.className = 'fa-solid fa-circle-xmark form-banner-icon';
+        }
+      }
+
+      // Update Title and Body
+      const bannerTitle = document.getElementById('successBannerTitle');
+      const bannerMsg = document.getElementById('successBannerMsg');
+      if (bannerTitle) bannerTitle.textContent = title;
+
+      if (bannerMsg) {
+        bannerMsg.innerHTML = message;
+
+        // Render actionable recovery buttons (WhatsApp link, retry, mailto)
+        if (actions && actions.length > 0) {
+          const actionRow = document.createElement('div');
+          actionRow.className = 'banner-action-row';
+
+          actions.forEach(action => {
+            if (action.isButton) {
+              const btn = document.createElement('button');
+              btn.type = 'button';
+              btn.className = `banner-action-btn ${action.className || 'btn-retry'}`;
+              btn.innerHTML = `${action.icon ? `<i class="${action.icon}"></i> ` : ''}${action.label}`;
+              if (action.onClick) btn.addEventListener('click', action.onClick);
+              actionRow.appendChild(btn);
+            } else {
+              const a = document.createElement('a');
+              a.href = action.href || '#';
+              if (action.target) a.target = action.target;
+              if (action.rel) a.rel = action.rel;
+              a.className = `banner-action-btn ${action.className || 'btn-wa'}`;
+              a.innerHTML = `${action.icon ? `<i class="${action.icon}"></i> ` : ''}${action.label}`;
+              actionRow.appendChild(a);
+            }
+          });
+
+          bannerMsg.appendChild(actionRow);
+        }
+      }
+
+      formSuccessBanner.style.display = 'flex';
+      formSuccessBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      // Auto-dismiss (keep errors/warnings visible longer for user action)
+      if (formBannerTimer) clearTimeout(formBannerTimer);
+      const dismissDelay = type === 'success' ? 25000 : 45000;
+      formBannerTimer = setTimeout(() => {
+        if (formSuccessBanner) formSuccessBanner.style.display = 'none';
+      }, dismissDelay);
+    }
+
+    stakeholderForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      // Trigger HTML5 validation check
+      if (!stakeholderForm.checkValidity()) {
+        stakeholderForm.reportValidity();
+        return;
+      }
 
       // Extract form values
       const roleKey = selectedRoleInput ? selectedRoleInput.value : 'off-taker';
@@ -348,10 +459,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // Target WhatsApp number based on regional selection (fallback to Abuja / Kaduna)
+      // Target WhatsApp number based on regional selection
       const targetPhone = hubWhatsAppMap[hub] || '2348166982970';
 
-      // Build structured message for WhatsApp
+      // Build structured message for WhatsApp and direct Mailto client
       const waText = 
 `🌾 *NEW BFARMCON INQUIRY*
 ━━━━━━━━━━━━━━━━━━━━
@@ -369,11 +480,19 @@ _Transmitted via BFARMCON Website_`;
 
       const waUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(waText)}`;
 
-      // Update button state during transmission
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = `<span>PROCESSING SUBMISSION...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
-      }
+      const mailtoSubject = encodeURIComponent(`🌾 New BFARMCON Inquiry: ${commodity} - ${name} (${hub})`);
+      const mailtoBody = encodeURIComponent(
+`Contact: ${name}
+Stakeholder: ${roleText}
+Phone / WhatsApp: ${phone}
+Email: ${email}
+Target Hub: ${hub}
+Product / Service: ${commodity}
+
+Specs / Message:
+${message}`
+      );
+      const mailtoUrl = `mailto:bfarmcon@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
 
       function resetSubmitButton() {
         if (submitBtn) {
@@ -388,45 +507,47 @@ _Transmitted via BFARMCON Website_`;
         }
       }
 
-      function showConfirmation(title, text, showWaLink = true) {
-        if (formSuccessBanner) {
-          const bannerTitle = document.getElementById('successBannerTitle');
-          const bannerMsg = document.getElementById('successBannerMsg');
-          if (bannerTitle) bannerTitle.textContent = title;
-          if (bannerMsg) {
-            bannerMsg.innerHTML = `${text} ${showWaLink ? `<br><a href="${waUrl}" target="_blank" class="banner-chat-link"><i class="fa-brands fa-whatsapp"></i> Click here to open WhatsApp chat</a>` : ''}`;
-          }
-          formSuccessBanner.style.display = 'flex';
-          formSuccessBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-          setTimeout(() => {
-            if (formSuccessBanner) formSuccessBanner.style.display = 'none';
-          }, 25000);
-        }
-      }
-
-      // 1. WhatsApp Only
+      // 1. WhatsApp Only Channel
       if (selectedChannel === 'whatsapp') {
         try {
-          window.open(waUrl, '_blank');
+          window.open(waUrl, '_blank', 'noopener,noreferrer');
         } catch (err) {
-          console.log('Popup blocked');
+          console.warn('Direct popup prevented:', err);
         }
-        showConfirmation(
-          'Connecting to WhatsApp...',
-          `Your inquiry for <strong>${commodity}</strong> is loaded for direct messaging with <strong>${hub}</strong>.`
-        );
+
+        showFormNotice({
+          type: 'success',
+          title: 'Connecting to WhatsApp...',
+          message: `Your inquiry for <strong>${commodity}</strong> has been structured for direct communication with the <strong>${hub}</strong> desk.`,
+          actions: [
+            {
+              label: 'Open WhatsApp Chat',
+              icon: 'fa-brands fa-whatsapp',
+              href: waUrl,
+              target: '_blank',
+              rel: 'noopener noreferrer',
+              className: 'btn-wa'
+            }
+          ]
+        });
+
         stakeholderForm.reset();
         updateCommodityDropdown(roleKey);
         resetSubmitButton();
         return;
       }
 
-      // 2. Email Only or Both -> Prepare Email Payload for Web3Forms
+      // 2. Email Only or Both Channel -> Dispatch via Web3Forms with Timeout & Error Catching
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span>DISPATCHING INQUIRY...</span> <i class="fa-solid fa-spinner fa-spin"></i>`;
+      }
+
       const emailPayload = {
         access_key: WEB3FORMS_ACCESS_KEY,
         subject: `🌾 New BFARMCON Inquiry: ${commodity} - ${name} (${hub})`,
-        from_name: 'BFARMCON Portal Desk',
+        from_name: `${name} via BFARMCON Portal`,
+        replyto: email,
         stakeholder_name: name,
         stakeholder_role: roleText,
         email: email,
@@ -437,44 +558,160 @@ _Transmitted via BFARMCON Website_`;
         inquiry_details: message
       };
 
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(emailPayload)
-      })
-      .then(res => res.json())
-      .then(data => {
-        console.log('Dispatch success:', data);
-      })
-      .catch(err => {
-        console.warn('Web3Forms dispatch error:', err);
-      })
-      .finally(() => {
-        if (selectedChannel === 'both') {
-          try {
-            window.open(waUrl, '_blank');
-          } catch (e) {
-            console.log('Direct popup prevented');
-          }
-          showConfirmation(
-            'Inquiry Dispatched via Email & WhatsApp!',
-            `A copy for <strong>${commodity}</strong> has been delivered to <strong>bfarmcon@gmail.com</strong> and dispatched to WhatsApp.`
-          );
-        } else {
-          showConfirmation(
-            'Inquiry Emailed Successfully!',
-            `Your inquiry for <strong>${commodity}</strong> has been delivered directly to <strong>bfarmcon@gmail.com</strong>. Our team will contact you shortly.`,
-            false
-          );
+      // 15-second AbortController timeout to prevent indefinite pending state
+      const abortController = new AbortController();
+      const timeoutId = setTimeout(() => abortController.abort(), 15000);
+
+      let isSuccess = false;
+      let errorMessage = '';
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          signal: abortController.signal,
+          body: JSON.stringify(emailPayload)
+        });
+
+        clearTimeout(timeoutId);
+
+        let data = null;
+        try {
+          data = await response.json();
+        } catch (parseErr) {
+          console.warn('Could not parse response JSON:', parseErr);
         }
 
+        if (response.ok && data && (data.success === true || data.success === 'true')) {
+          isSuccess = true;
+        } else {
+          errorMessage = data?.message || `Server responded with status ${response.status}`;
+        }
+      } catch (err) {
+        clearTimeout(timeoutId);
+        if (err.name === 'AbortError') {
+          errorMessage = 'The request timed out. Please check your internet connection.';
+        } else if (!navigator.onLine) {
+          errorMessage = 'You appear to be offline. Please verify your internet connection.';
+        } else {
+          errorMessage = 'Network connection to email relay was blocked or interrupted (often by an adblocker or strict firewall).';
+        }
+        console.warn('Form dispatch network error:', err);
+      }
+
+      // Handle Result: Clear form ONLY on genuine success; preserve inputs on failure
+      if (isSuccess) {
+        if (selectedChannel === 'both') {
+          try {
+            window.open(waUrl, '_blank', 'noopener,noreferrer');
+          } catch (e) {
+            console.warn('Direct popup prevented:', e);
+          }
+
+          showFormNotice({
+            type: 'success',
+            title: 'Inquiry Dispatched via Email & WhatsApp!',
+            message: `A verified copy for <strong>${commodity}</strong> has been transmitted directly to <strong>bfarmcon@gmail.com</strong> and structured for WhatsApp.`,
+            actions: [
+              {
+                label: 'Continue on WhatsApp',
+                icon: 'fa-brands fa-whatsapp',
+                href: waUrl,
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                className: 'btn-wa'
+              }
+            ]
+          });
+        } else {
+          showFormNotice({
+            type: 'success',
+            title: 'Inquiry Emailed Successfully!',
+            message: `Your inquiry for <strong>${commodity}</strong> has been delivered directly to <strong>bfarmcon@gmail.com</strong>. Our regional team will contact you promptly.`,
+            actions: [
+              {
+                label: 'Need Urgent Confirmation? WhatsApp Desk',
+                icon: 'fa-brands fa-whatsapp',
+                href: waUrl,
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                className: 'btn-wa'
+              }
+            ]
+          });
+        }
+
+        // Reset form inputs only when successfully sent
         stakeholderForm.reset();
         updateCommodityDropdown(roleKey);
-        resetSubmitButton();
-      });
+
+      } else {
+        // ERROR STATE: Keep form entries safe, do NOT reset inputs!
+        if (selectedChannel === 'both') {
+          showFormNotice({
+            type: 'warning',
+            title: 'Email Relay Interrupted — WhatsApp Direct Ready',
+            message: `We could not deliver through the email relay (${errorMessage}). <strong>Don't worry — your inquiry details are saved above.</strong> Click below to transmit directly to our regional desk on WhatsApp:`,
+            actions: [
+              {
+                label: 'Send via WhatsApp Now',
+                icon: 'fa-brands fa-whatsapp',
+                href: waUrl,
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                className: 'btn-wa'
+              },
+              {
+                label: 'Retry Email Send',
+                icon: 'fa-solid fa-rotate-right',
+                isButton: true,
+                onClick: () => stakeholderForm.requestSubmit(),
+                className: 'btn-retry'
+              },
+              {
+                label: 'Send via Mail Client',
+                icon: 'fa-regular fa-envelope',
+                href: mailtoUrl,
+                className: 'btn-retry'
+              }
+            ]
+          });
+        } else {
+          showFormNotice({
+            type: 'error',
+            title: 'Email Submission Failed',
+            message: `Unable to transmit your inquiry via the email relay (${errorMessage}). Your form data has been preserved above. You can retry, email directly, or connect on WhatsApp:`,
+            actions: [
+              {
+                label: 'Retry Email Submission',
+                icon: 'fa-solid fa-rotate-right',
+                isButton: true,
+                onClick: () => stakeholderForm.requestSubmit(),
+                className: 'btn-retry'
+              },
+              {
+                label: 'Send via Mail Client',
+                icon: 'fa-regular fa-envelope',
+                href: mailtoUrl,
+                className: 'btn-retry'
+              },
+              {
+                label: 'Send via WhatsApp Instead',
+                icon: 'fa-brands fa-whatsapp',
+                href: waUrl,
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                className: 'btn-wa'
+              }
+            ]
+          });
+        }
+      }
+
+      resetSubmitButton();
     });
   }
 
@@ -548,18 +785,20 @@ _Transmitted via BFARMCON Website_`;
   const floatingWhatsAppDesk = document.getElementById('floatingWhatsAppDesk');
 
   if (floatingWhatsAppDesk) {
-    const savedPosition = localStorage.getItem('bfarmcon_whatsapp_position');
+    const savedPosition = safeStorage.get('bfarmcon_whatsapp_position');
     let dragState = null;
 
     if (savedPosition) {
       try {
         const position = JSON.parse(savedPosition);
-        floatingWhatsAppDesk.style.left = `${position.left}px`;
-        floatingWhatsAppDesk.style.top = `${position.top}px`;
-        floatingWhatsAppDesk.style.right = 'auto';
-        floatingWhatsAppDesk.style.bottom = 'auto';
+        if (position && typeof position.left === 'number' && typeof position.top === 'number') {
+          floatingWhatsAppDesk.style.left = `${position.left}px`;
+          floatingWhatsAppDesk.style.top = `${position.top}px`;
+          floatingWhatsAppDesk.style.right = 'auto';
+          floatingWhatsAppDesk.style.bottom = 'auto';
+        }
       } catch (error) {
-        localStorage.removeItem('bfarmcon_whatsapp_position');
+        safeStorage.remove('bfarmcon_whatsapp_position');
       }
     }
 
@@ -602,7 +841,7 @@ _Transmitted via BFARMCON Website_`;
       if (dragState.moved) {
         event.preventDefault();
         floatingWhatsAppDesk.dataset.wasDragged = 'true';
-        localStorage.setItem('bfarmcon_whatsapp_position', JSON.stringify({
+        safeStorage.set('bfarmcon_whatsapp_position', JSON.stringify({
           left: floatingWhatsAppDesk.offsetLeft,
           top: floatingWhatsAppDesk.offsetTop
         }));
