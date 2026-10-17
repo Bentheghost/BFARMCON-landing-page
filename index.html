@@ -432,7 +432,7 @@
             <i class="fa-solid fa-sun sun-icon"></i>
           </button>
 
-          <a href="#contact" class="btn btn-primary nav-cta">
+          <a href="#direct-message" class="btn btn-primary nav-cta">
             <span>Inquiry/Supply</span>
             <i class="fa-solid fa-arrow-right"></i>
           </a>
@@ -476,6 +476,15 @@
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
+
+      <!-- Quick Action in Mobile Drawer -->
+      <div class="drawer-cta-wrap">
+        <a href="#direct-message" class="btn btn-primary drawer-cta-btn mobile-nav-link">
+          <span>Inquiry / Supply</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
       <ul class="mobile-nav-menu">
         <li><a href="#hero" class="mobile-nav-link">Home</a></li>
         <li><a href="#about" class="mobile-nav-link">Who We Are</a></li>
@@ -625,7 +634,7 @@
 
             <!-- Hero Action Buttons -->
             <div class="hero-cta-group">
-              <a href="#contact" class="btn btn-primary btn-large">
+              <a href="#direct-message" class="btn btn-primary btn-large">
                 <span>Request Commodity Supply</span>
                 <i class="fa-solid fa-box-open"></i>
               </a>
@@ -906,7 +915,7 @@
                   <i class="fa-solid fa-list-check"></i>
                   <span>Explore Services</span>
                 </a>
-                <a href="#contact" class="btn btn-primary">
+                <a href="#direct-message" class="btn btn-primary">
                   <i class="fa-solid fa-handshake-angle"></i>
                   <span>Partner With Us</span>
                 </a>
@@ -972,7 +981,7 @@
               </p>
             </div>
             <div class="header-right">
-              <a href="#contact" class="btn btn-outline"
+              <a href="#direct-message" class="btn btn-outline"
                 >Schedule Consultation</a
               >
             </div>
@@ -991,7 +1000,7 @@
                 labor standards, and quarterly impact reporting.
               </p>
               <div class="service-footer">
-                <a href="#contact" class="service-btn">
+                <a href="#direct-message" class="service-btn" data-service-type="esg">
                   <span>Inquire Service</span>
                   <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -1009,7 +1018,7 @@
                 co-operative clusters and off-takers.
               </p>
               <div class="service-footer">
-                <a href="#contact" class="service-btn">
+                <a href="#direct-message" class="service-btn" data-service-type="market-linkage">
                   <span>Inquire Service</span>
                   <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -1028,7 +1037,7 @@
                 transit logistics.
               </p>
               <div class="service-footer">
-                <a href="#contact" class="service-btn">
+                <a href="#direct-message" class="service-btn" data-service-type="lba">
                   <span>Inquire Service</span>
                   <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -1045,7 +1054,7 @@
                 escrow disbursement and settlement/loan recovery.
               </p>
               <div class="service-footer">
-                <a href="#contact" class="service-btn">
+                <a href="#direct-message" class="service-btn" data-service-type="finance">
                   <span>Inquire Service</span>
                   <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -1064,7 +1073,7 @@
                 sustainable standards.
               </p>
               <div class="service-footer">
-                <a href="#contact" class="service-btn">
+                <a href="#direct-message" class="service-btn" data-service-type="aggregation">
                   <span>Inquire Service</span>
                   <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -1522,8 +1531,8 @@
             </div>
 
             <!-- Right Column: Interactive Direct Message Intake Form -->
-            <div class="contact-form-col">
-              <div class="contact-form-wrapper">
+            <div class="contact-form-col" id="direct-message">
+              <div class="contact-form-wrapper" id="directMessageCard">
                 <div class="form-header-box">
                   <h3 class="form-title">Send Us a Direct Message</h3>
                   <p class="form-desc">

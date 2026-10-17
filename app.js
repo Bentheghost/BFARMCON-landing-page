@@ -741,6 +741,87 @@ ${message}`
   mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileDrawer));
 
   /* ==========================================================================
+     9b. Direct Message Intake Navigation & Form Focus Dispatcher
+     ========================================================================== */
+  function navigateToDirectMessage(options = {}) {
+    const directMessageSection = document.getElementById('direct-message');
+    const directMessageCard = document.getElementById('directMessageCard') || document.querySelector('.contact-form-wrapper');
+    if (!directMessageSection) return;
+
+    // Close mobile menu if open
+    closeMobileDrawer();
+
+    // Responsive clearance for sticky navigation bar
+    const isMobile = window.innerWidth <= 768;
+    const headerClearance = isMobile ? 80 : 100;
+    const rect = directMessageSection.getBoundingClientRect();
+    const targetY = rect.top + window.pageYOffset - headerClearance;
+
+    window.scrollTo({
+      top: Math.max(0, targetY),
+      behavior: 'smooth'
+    });
+
+    // Handle role or service pre-selection if requested
+    if (options.role) {
+      const targetRoleBtn = document.querySelector(`.role-btn[data-role="${options.role}"]`);
+      if (targetRoleBtn) {
+        targetRoleBtn.click();
+      }
+    } else if (options.serviceType) {
+      const serviceRoleMap = {
+        'esg': 'general',
+        'market-linkage': 'off-taker',
+        'lba': 'off-taker',
+        'finance': 'finance',
+        'aggregation': 'cooperative'
+      };
+      const mappedRole = serviceRoleMap[options.serviceType];
+      if (mappedRole) {
+        const roleBtn = document.querySelector(`.role-btn[data-role="${mappedRole}"]`);
+        if (roleBtn) roleBtn.click();
+      }
+    }
+
+    // Trigger visual highlight pulse on form card
+    if (directMessageCard) {
+      directMessageCard.classList.remove('form-highlight-active');
+      void directMessageCard.offsetWidth; // Force CSS reflow to re-trigger animation
+      directMessageCard.classList.add('form-highlight-active');
+      setTimeout(() => {
+        directMessageCard.classList.remove('form-highlight-active');
+      }, 2200);
+    }
+
+    // Smoothly focus first input for enhanced keyboard/screen-reader accessibility
+    setTimeout(() => {
+      const nameInput = document.getElementById('contactName');
+      if (nameInput) {
+        nameInput.focus({ preventScroll: true });
+      }
+    }, 600);
+  }
+
+  // Intercept clicks on any link pointing to #direct-message
+  document.querySelectorAll('a[href="#direct-message"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const serviceType = link.getAttribute('data-service-type');
+      navigateToDirectMessage({ serviceType });
+      if (window.history && window.history.pushState) {
+        window.history.pushState(null, null, '#direct-message');
+      }
+    });
+  });
+
+  // Handle direct page loads or external links with hash #direct-message
+  if (window.location.hash === '#direct-message') {
+    setTimeout(() => {
+      navigateToDirectMessage();
+    }, 400);
+  }
+
+  /* ==========================================================================
      10. Back to Top Button & Scroll Spy
      ========================================================================== */
   const backToTopBtn = document.getElementById('backToTopBtn');
